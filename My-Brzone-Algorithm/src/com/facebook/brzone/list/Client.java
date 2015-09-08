@@ -28,6 +28,8 @@ public class Client {
 		System.out.println(myArr);
 		
 		System.out.println("----------" + myArr.size());
+		
+		//
 	}
 	
 	
