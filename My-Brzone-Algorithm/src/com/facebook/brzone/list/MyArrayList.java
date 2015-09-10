@@ -204,7 +204,8 @@ public class MyArrayList<T> implements Iterable<T> {
 
 		@Override
 		public void remove() {
-			MyArrayList.this.remove(currentIndex);
+			 //因為在next的時候，已經currentIndex++，所以要删除当前元素，需要把遍历的当前位置减一
+			MyArrayList.this.remove(--currentIndex);  
 		}
 		
 	}
