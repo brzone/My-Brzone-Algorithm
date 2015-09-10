@@ -34,7 +34,7 @@ public class MyArrayList<T> implements Iterable<T> {
 	}
 	
 	
-	/**
+	/**ddd
 	 * 当调用add(T t)方法时候，需要确定数组是否可以增加保存一个原始，意思是说，是否还有一个空位来保存，如果没有空位的话，
 	 * 重新初始化一个新的数组，并扩大相应容量，把旧数组数据copy到新数组中
 	 */
