@@ -46,7 +46,7 @@ public class Client {
 			iterator.remove();
 		}
 		
-		//在新的workspace进行下测试
+		//中文测试
 		
 	}
 	
