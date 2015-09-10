@@ -1,12 +1,14 @@
 package com.facebook.brzone.list;
 
+import java.util.Iterator;
+
 /**
  * 模拟ArrayList
  * @author brzone@126.com
  *
  * @date 2015年9月8日 下午3:09:47
  */
-public class MyArrayList<T> {
+public class MyArrayList<T> implements Iterable<T> {
 	
 	/**实际数据的元素个数*/
 	private int size;
@@ -179,6 +181,32 @@ public class MyArrayList<T> {
 		sb.append("]");
 		
 		return sb.toString();
+	}
+
+	@Override
+	public Iterator<T> iterator() {
+		return new MyArrayListIterator();
+	}
+	
+	private class MyArrayListIterator implements Iterator<T> {
+		
+		private int currentIndex = 0;
+
+		@Override
+		public boolean hasNext() {
+			return currentIndex < size  ;
+		}
+
+		@Override
+		public T next() {
+			return data[currentIndex++]; 
+		}
+
+		@Override
+		public void remove() {
+			MyArrayList.this.remove(currentIndex);
+		}
+		
 	}
 
 }

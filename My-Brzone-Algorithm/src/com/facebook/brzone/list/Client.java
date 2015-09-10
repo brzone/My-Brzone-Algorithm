@@ -1,5 +1,7 @@
 package com.facebook.brzone.list;
 
+import java.util.Iterator;
+
 public class Client {
 
 	public static void main(String[] args) {
@@ -29,7 +31,21 @@ public class Client {
 		
 		System.out.println("----------" + myArr.size());
 		
-		//
+		
+		for(Integer e : myArr) {
+			//System.out.println(e);
+		}
+		
+		
+		Iterator<Integer> iterator =  myArr.iterator();
+		
+		while(iterator.hasNext()) {
+			
+			Integer i = iterator.next();
+			System.out.println(i);
+			iterator.remove();
+		}
+		
 	}
 	
 	
