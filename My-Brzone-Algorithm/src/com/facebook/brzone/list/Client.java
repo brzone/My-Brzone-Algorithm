@@ -45,8 +45,9 @@ public class Client {
 			System.out.println(i);
 			iterator.remove();
 		}
+		//中国你好
 		
-		//中文测试
+		
 		
 	}
 	
