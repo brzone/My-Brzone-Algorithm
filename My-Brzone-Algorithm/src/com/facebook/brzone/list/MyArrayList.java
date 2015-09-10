@@ -3,14 +3,14 @@ package com.facebook.brzone.list;
 import java.util.Iterator;
 
 /**
- * Ä£ÄâArrayList
+ * æ¨¡æ‹ŸArrayList
  * @author brzone@126.com
  *
- * @date 2015Äê9ÔÂ8ÈÕ ÏÂÎç3:09:47
+ * @date 2015å¹´9æœˆ8æ—¥ ä¸‹åˆ3:09:47
  */
 public class MyArrayList<T> implements Iterable<T> {
 	
-	/**Êµ¼ÊÊı¾İµÄÔªËØ¸öÊı*/
+	/**å®é™…æ•°æ®çš„å…ƒç´ ä¸ªæ•°*/
 	private int size;
 	
 	private T[] data;
@@ -29,26 +29,26 @@ public class MyArrayList<T> implements Iterable<T> {
 			throw new IllegalArgumentException("size:" + size);
 		}
 		
-		//²»ÄÜ´´½¨·ºĞÍÊı×é£¬¿ÉÒÔ´´½¨ObjectÊı×é£¬È»ºó×ªĞÍÎª·ºĞÍÊı×é
+		//ä¸èƒ½åˆ›å»ºæ³›å‹æ•°ç»„ï¼Œå¯ä»¥åˆ›å»ºObjectæ•°ç»„ï¼Œç„¶åè½¬å‹ä¸ºæ³›å‹æ•°ç»„
 		data  = (T[])new Object[size];
 	}
 	
 	
 	/**ddd
-	 * µ±µ÷ÓÃadd(T t)·½·¨Ê±ºò£¬ĞèÒªÈ·¶¨Êı×éÊÇ·ñ¿ÉÒÔÔö¼Ó±£´æÒ»¸öÔ­Ê¼£¬ÒâË¼ÊÇËµ£¬ÊÇ·ñ»¹ÓĞÒ»¸ö¿ÕÎ»À´±£´æ£¬Èç¹ûÃ»ÓĞ¿ÕÎ»µÄ»°£¬
-	 * ÖØĞÂ³õÊ¼»¯Ò»¸öĞÂµÄÊı×é£¬²¢À©´óÏàÓ¦ÈİÁ¿£¬°Ñ¾ÉÊı×éÊı¾İcopyµ½ĞÂÊı×éÖĞ
+	 * å½“è°ƒç”¨add(T t)æ–¹æ³•æ—¶å€™ï¼Œéœ€è¦ç¡®å®šæ•°ç»„æ˜¯å¦å¯ä»¥å¢åŠ ä¿å­˜ä¸€ä¸ªåŸå§‹ï¼Œæ„æ€æ˜¯è¯´ï¼Œæ˜¯å¦è¿˜æœ‰ä¸€ä¸ªç©ºä½æ¥ä¿å­˜ï¼Œå¦‚æœæ²¡æœ‰ç©ºä½çš„è¯ï¼Œ
+	 * é‡æ–°åˆå§‹åŒ–ä¸€ä¸ªæ–°çš„æ•°ç»„ï¼Œå¹¶æ‰©å¤§ç›¸åº”å®¹é‡ï¼ŒæŠŠæ—§æ•°ç»„æ•°æ®copyåˆ°æ–°æ•°ç»„ä¸­
 	 */
 	@SuppressWarnings("unchecked")
 	private void ensureCapacity(){
 		
-		//ÊÇ·ñĞèÒªÀ©Èİ
+		//æ˜¯å¦éœ€è¦æ‰©å®¹
 		boolean isNeedBiggerCapacity = (size + 1 > data.length);
 		
 		if(!isNeedBiggerCapacity) {
 			return ;
 		}
 		
-		//ĞÂµÄÊı×é
+		//æ–°çš„æ•°ç»„
 		T[]  newData  = (T[])new Object[size * 2];
 		
 		//copy
@@ -56,11 +56,11 @@ public class MyArrayList<T> implements Iterable<T> {
 			
 			newData[i] = data[i];
 			
-			//ÄÚ´æ»ØÊÕ
+			//å†…å­˜å›æ”¶
 			data[i] = null;
 		}
 		
-		//Ö¸ÏòĞÂµÄÊı×é
+		//æŒ‡å‘æ–°çš„æ•°ç»„
 		data = newData;
 		
 	}
@@ -79,13 +79,13 @@ public class MyArrayList<T> implements Iterable<T> {
 		
 		ensureCapacity();
 		
-		//Èç¹ûÕıºÃÊÇÔÚÄ©Î²Ôö¼ÓÊıÖµ
+		//å¦‚æœæ­£å¥½æ˜¯åœ¨æœ«å°¾å¢åŠ æ•°å€¼
 		if(index >= size + 1) {
 			data[size++] = t;
 		
 		} else {
 			
-			//ĞèÒªÒÆ¶¯indexºóÃæµÄÖµ
+			//éœ€è¦ç§»åŠ¨indexåé¢çš„å€¼
 			for(int i = size;i>=index -1;i--) {
 				
 				data[i+1] = data[i];
@@ -98,7 +98,7 @@ public class MyArrayList<T> implements Iterable<T> {
 	}
 	
 	/**
-	 * É¾³ıÖ¸¶¨Î»ÖÃµÄÖµ£¬É¾³ıµÚÒ»¸ö£¬´«µİ0
+	 * åˆ é™¤æŒ‡å®šä½ç½®çš„å€¼ï¼Œåˆ é™¤ç¬¬ä¸€ä¸ªï¼Œä¼ é€’0
 	 * @param index
 	 */
 	public void remove(int index) {
@@ -111,20 +111,20 @@ public class MyArrayList<T> implements Iterable<T> {
 			throw new IllegalArgumentException("size:" + size + ",index:" + index);
 		}
 		
-		//É¾³ıÄ©Î²µÄÊı¾İ
+		//åˆ é™¤æœ«å°¾çš„æ•°æ®
 		if(index == size -1) {
 			
 			data[--size] = null;
 			
 		} else {
 			
-			//indexºóÃæµÄÖµÒªÏòÇ°ÒÆ¶¯
+			//indexåé¢çš„å€¼è¦å‘å‰ç§»åŠ¨
 			for(int i = index;i<size;i++) {
 				
 				data[i] = data[i+1];
 			}
 			
-			data[--size] = null; //×îºóµÄÔªËØÖ¸ÏòÎªnull 
+			data[--size] = null; //æœ€åçš„å…ƒç´ æŒ‡å‘ä¸ºnull 
 		}
 		
 	}

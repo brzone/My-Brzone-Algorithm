@@ -3,10 +3,10 @@ package com.facebook.brzone.list;
 import java.util.Iterator;
 
 /**
- * ²âÊÔ
+ * æµ‹è¯•ä¸­æ–‡
  * @author lijian@cstonline.com
  *
- * @date 2015Äê9ÔÂ10ÈÕ ÏÂÎç2:31:49
+ * @date 2015å¹´9æœˆ10æ—¥ ä¸‹åˆ2:31:49
  */
 public class ClientTest {
 
