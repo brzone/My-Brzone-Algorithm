@@ -1,7 +1,12 @@
 package com.facebook.brzone.linkedlist;
 
 /**
- * 模拟链表LinkedList
+ * 模拟链表LinkedList （粗版本）
+ * 
+ * 1. 位置从1开始
+ * 
+ * 2. 只是实现单链表，意思说，通过一个节点可以直接找到它的next节点，但是不能直接找到它的prev节点
+ * 
  * @author brzone@126.com
  *
  * @date 2015年9月10日 下午4:04:14
@@ -85,7 +90,66 @@ public class MyLinkedList<T> {
 		++size;
 	}
 	
-	public void remove(int index) {}
+	/**
+	 * index从1开始
+	 * @param index
+	 */
+	public void remove(int index) {
+		
+		if(index < 1 || index > size()) {
+			
+			throw new IndexOutOfBoundsException("size:" + size() + ",index:" + index);
+		}
+		
+		/**
+		 * 1. 找出index的前一个元素和下一个元素（下一个元素也许为nll，意思说，index所在元素也许是end末尾元素，这个要特殊对待）
+		 * 
+		 * 2. 修改引用指向
+		 * 
+		 */
+		
+		
+		Node<T> indexNode = getNode( index);  //index元素节点
+		
+		//如果index是首元素
+		if(indexNode == first) {
+			
+			//意思说，只有一个首元素
+			if(end == null) {
+				first = null;
+				size--;
+				return ;
+			}
+			
+			//找首元素的下一个元素作为首元素即可
+			first = getNode( index+1);
+			size--;
+			return ;
+			
+		}
+		
+		
+		//如果index元素是末元素
+		if(indexNode == end) {
+			
+			first.next = null;
+			end = null;
+			size --;
+			return;
+		}
+		
+		//index既不是first元素也不是end元素，证明index元素有前驱和后置节点
+		
+		
+		Node<T> indexPrevNode = getNode( index-1);  //index的上一个元素节点
+		
+		Node<T> indexNextNode = getNode( index+1);  //index的上一个元素节点
+		
+		indexPrevNode.next = indexNextNode;
+		indexNode = null;  //让gc在必要时间回收掉
+		
+		size --;
+	}
 	
 	/**
 	 * 获取指定的index，index从1开始
@@ -93,6 +157,16 @@ public class MyLinkedList<T> {
 	 * @return
 	 */
 	public T get(int index) {
+		
+		return getNode(index).data;
+	}
+	
+	/**
+	 * index从1开始
+	 * @param index
+	 * @return
+	 */
+	private Node<T> getNode(int index)  {
 		
 		if(index < 1 || index > size()) {
 			
@@ -107,15 +181,27 @@ public class MyLinkedList<T> {
 			getFirst = getFirst.next;
 		}
 		
-		return getFirst.data;
+		return getFirst;
 	}
-
+	
+	/**
+	 * index从1开始
+	 * @param t
+	 * @param index
+	 */
 	public void set(T t ,int index) {
 		
+		 Node<T> indexNode =  getNode( index);
+		 
+		 indexNode.data = t;
 	}
 	
 	public int size() {
 		return size;
+	}
+	
+	public boolean empty() {
+		return size == 0;
 	}
 	
 	public Node<T> getFirst() {
@@ -123,6 +209,12 @@ public class MyLinkedList<T> {
 	}
 	
 	
+	/**
+	 * 节点。因为不需要外部类的this引用，就设置为静态的内部类
+	 * @author brzone@126.com
+	 *
+	 * @date 2015年9月11日 上午10:50:20
+	 */
 	private static class Node<T> {
 		
 		T data;
@@ -134,23 +226,11 @@ public class MyLinkedList<T> {
 			this.data = data;
 			this.next = null;
 		}
-		
 
 		public T getData() {
 			return data;
 		}
-
-		public void setData(T data) {
-			this.data = data;
-		}
-
-		public Node<T> getNext() {
-			return next;
-		}
-
-		public void setNext(Node<T> next) {
-			this.next = next;
-		}
+		
 
 		@Override
 		public String toString() {
